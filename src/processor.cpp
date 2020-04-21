@@ -1,7 +1,7 @@
 #include "processor.h"
 
 // TODO: Return the aggregate CPU utilization
-float Processor::Utilization() { 
+double Processor::Utilization() { 
     std::vector<std::string> cpus_ = LinuxParser::CpuUtilization();
     long uptime = LinuxParser::UpTime();
     return (std::stof(cpus_[0])+std::stof(cpus_[1]))/(uptime*1000.);
@@ -9,7 +9,7 @@ float Processor::Utilization() {
 
 
 // DONE: Return the system's memory utilization
-float Processor::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
+double Processor::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
 
 
 

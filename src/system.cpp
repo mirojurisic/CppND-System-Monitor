@@ -15,11 +15,7 @@
 #include "processor.h"
 #include "system.h"
 
-using std::set;
-using std::size_t;
-using std::string;
-using std::vector;
-
+using namespace std;
 // DONE: Return the system's CPU
 Processor& System::Cpu() {
   cpu_ = Processor();
@@ -33,7 +29,6 @@ vector<Process>& System::Processes() {
   int count  = 0;
   for (auto pid : pids) {
         processes_.emplace_back(Process(pid));
-        //processes_.at(count).Debugging(pid);
         count ++;
   }
   std::sort(processes_.begin(), processes_.end());

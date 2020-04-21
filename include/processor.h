@@ -7,8 +7,8 @@
 class Processor {
  public:
     Processor(){SetOperatingSystem();SetKernel();};
-    float Utilization();  // DONE: See src/processor.cpp
-    float MemoryUtilization(); // DONE: Return the system's memory utilization
+    double Utilization();  // DONE: See src/processor.cpp
+    double MemoryUtilization(); // DONE: Return the system's memory utilization
     int RunningProcesses() ; // DONE: Return the number of processes actively running on the system
     int TotalProcesses(); // DONE: Return the total number of processes on the system 
     long int UpTime() ; // DONE: Return the number of seconds since the system started running

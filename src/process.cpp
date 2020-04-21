@@ -33,34 +33,11 @@ long int Process::UpTime() { return uptime_; }
 
 // DONE: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const& a) const { 
-    return this->ram_ > a.ram_;
+    return this->cpuUtilization_ > a.cpuUtilization_;
     
-    //return this->cpuUtilization_ > a.cpuUtilization_;
      }
 
-  /*            
-void Process::Debugging(int pid)
-{
-    std::cout<<"PID:  "<<pid<<std::endl;
-    std::ifstream stream (LinuxParser::kProcDirectory + std::to_string(pid) + LinuxParser::kStatFilename);
-    if (stream.is_open()) {
-        std::string line;
-        auto iter = meanings.begin() ;
-        while(std::getline(stream , line))
-        {
-            std::istringstream linestream(line);
-            std::string num;
 
-            while(linestream >> num)
-            {
-                if(iter!=meanings.end())
-                std::cout<<*iter<<":"<<num<<std::endl;
-                
-                iter++;
-            }
-         }
-    }  
-}*/
 
 Process::Process(int pid)
 {   

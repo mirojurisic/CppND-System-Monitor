@@ -109,6 +109,7 @@ float LinuxParser::MemoryUtilization() {
   }
   if (value1 != "-" && value2 != "-")
     return 1 - std::stod(value2) / std::stod(value1);
+  return 0.0;
 }
 
 // DONEx2: Read and return the system uptime
@@ -190,6 +191,8 @@ string LinuxParser::Command(int pid) {
   if (stream.is_open()) {
     std::getline(stream, command);
   }
+  if(command.size()>40)
+    command = command.substr(0,40);
   return command;
 }
 
@@ -201,7 +204,7 @@ string LinuxParser::Ram(int pid) {
     while (std::getline(stream, line)) {
       std::istringstream stringStream(line);
       stringStream >> key >> value;
-      if (key == "VmSize:") return std::to_string(std::stoi(value) / 1000);
+      if (key == "VmData:") return std::to_string(std::stoi(value) / 1000);
     }
   }
   return string();
@@ -246,7 +249,6 @@ long LinuxParser::UpTime(int pid) {
   string upTime;
   if (stream.is_open()) {
     std::string line;
-    auto iter = meanings.begin();
     std::getline(stream, line);
     std::istringstream linestream(line);
     string num;
@@ -254,7 +256,6 @@ long LinuxParser::UpTime(int pid) {
       linestream >> num;
     }
     linestream >> upTime;
- 
     return LinuxParser::UpTime() - std::stol(upTime)/sysconf(_SC_CLK_TCK);
 
   }
